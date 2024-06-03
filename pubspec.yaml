@@ -1,0 +1,73 @@
+name: activeaid
+description: "workout app"
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.2.3 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  audioplayers: ^5.0.0
+  percent_indicator: ^4.2.3
+  cupertino_icons: ^1.0.2
+  fl_chart: ^0.67.0
+  intl: ^0.19.0
+  ionicons: ^0.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.3.3
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    # globals sounds
+    - assets/sounds/beep.mp3
+    - assets/sounds/completed.wav
+
+    # exercise sounds
+    - assets/sounds/exercises/Bicycle_Crunches.mp3
+    - assets/sounds/exercises/Burpees.mp3
+    - assets/sounds/exercises/High_Knees.mp3
+    - assets/sounds/exercises/Jumping_Jacks.mp3
+    - assets/sounds/exercises/Leg_Raises.mp3
+    - assets/sounds/exercises/Lunges_alternate_legs.mp3
+    - assets/sounds/exercises/Mountain_Climbers.mp3
+    - assets/sounds/exercises/Plank.mp3
+    - assets/sounds/exercises/Push-ups.mp3
+    - assets/sounds/exercises/Reverse_Lunges_alternate_legs.mp3
+    - assets/sounds/exercises/Russian_Twists.mp3
+    - assets/sounds/exercises/Squats.mp3
+    - assets/sounds/exercises/Superman_Pose.mp3
+    - assets/sounds/exercises/Tricep_Dips.mp3
+    - assets/sounds/exercises/Wall_Sit.mp3
+    - assets/sounds/exercises/Rest.mp3
+
+    # exercise images
+    - assets/pushup.png
+    - assets/images/push_up_1.png
+    - assets/images/push_up_2.png
+
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
