@@ -1,3 +1,4 @@
+import 'package:activeaid/utils/profile_utils.dart';
 import 'package:activeaid/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,9 @@ class Auth extends StatefulWidget {
 }
 
 class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,10 +32,11 @@ class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
             Container(
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(12)),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: nameController,
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "Full Name",
                   ),
@@ -42,26 +47,13 @@ class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
             Container(
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(12)),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
-                  decoration: InputDecoration(
+                  controller: emailController,
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                     hintText: "Email",
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "password",
                   ),
                 ),
               ),
@@ -88,7 +80,12 @@ class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
             text: "Continue",
             light: true,
             onTap: () {
-              widget.nextScreen!();
+              if (nameController.text.isNotEmpty &&
+                  emailController.text.isNotEmpty) {
+                ProfileUtils()
+                    .updateAuth(nameController.text, emailController.text);
+                widget.nextScreen!();
+              }
             },
           ),
         )

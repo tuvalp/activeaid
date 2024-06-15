@@ -1,3 +1,4 @@
+import 'package:activeaid/utils/profile_utils.dart';
 import 'package:activeaid/widgets/primary_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +12,7 @@ class Age extends StatefulWidget {
 }
 
 class _AgeState extends State<Age> with SingleTickerProviderStateMixin {
-  String gender = "Male";
-  bool isExit = false;
-
-  void setGender(String gender) {
-    setState(() {
-      this.gender = gender;
-    });
-  }
+  int Age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +32,10 @@ class _AgeState extends State<Age> with SingleTickerProviderStateMixin {
           child: CupertinoPicker(
             itemExtent: 40,
             backgroundColor: Theme.of(context).colorScheme.primary,
-            scrollController: FixedExtentScrollController(initialItem: 18),
-            onSelectedItemChanged: (value) => (print(value)),
+            scrollController: FixedExtentScrollController(initialItem: Age),
+            onSelectedItemChanged: (value) => (setState(() {
+              Age = value;
+            })),
             children: [
               for (var i = 0; i <= 100; i++)
                 Align(
@@ -59,6 +55,7 @@ class _AgeState extends State<Age> with SingleTickerProviderStateMixin {
           child: PrimaryButton(
             text: "Continue",
             onTap: () {
+              ProfileUtils().updateAge(Age);
               widget.nextScreen!();
             },
             light: true,

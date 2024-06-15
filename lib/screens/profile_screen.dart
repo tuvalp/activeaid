@@ -3,6 +3,7 @@ import 'package:activeaid/screens/profile_screen/age.dart';
 import 'package:activeaid/screens/profile_screen/gender.dart';
 import 'package:activeaid/screens/profile_screen/heigt.dart';
 import 'package:activeaid/screens/profile_screen/weight.dart';
+import 'package:activeaid/utils/profile_utils.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -43,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 16),
             Text(
-              "Tuval Peled",
+              ProfileUtils().profileBox.getAt(0)!.name,
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -51,21 +52,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              "tuvalpeled@gmail.com",
+              ProfileUtils().profileBox.getAt(0)!.email,
               style: TextStyle(
                   fontSize: 16,
                   color: Theme.of(context).colorScheme.onSecondary),
             ),
             const SizedBox(height: 24),
-            const Acount(),
+            Acount(isOpen: _editIndex == 1, setOpen: _setEditIndex),
             const SizedBox(height: 16),
-            Gender(isOpen: _editIndex == 1, setOpen: _setEditIndex),
+            Gender(isOpen: _editIndex == 2, setOpen: _setEditIndex),
             const SizedBox(height: 16),
-            Age(isOpen: _editIndex == 2, setOpen: _setEditIndex),
+            Age(isOpen: _editIndex == 3, setOpen: _setEditIndex),
             const SizedBox(height: 16),
-            Heigt(isOpen: _editIndex == 3, setOpen: _setEditIndex),
+            Heigt(isOpen: _editIndex == 4, setOpen: _setEditIndex),
             const SizedBox(height: 16),
-            Weight(isOpen: _editIndex == 4, setOpen: _setEditIndex),
+            Weight(isOpen: _editIndex == 5, setOpen: _setEditIndex),
           ],
         ),
       ),

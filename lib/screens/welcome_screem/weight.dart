@@ -3,16 +3,16 @@ import 'package:activeaid/widgets/primary_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Heigt extends StatefulWidget {
-  const Heigt({required this.nextScreen, super.key});
+class Weight extends StatefulWidget {
+  const Weight({required this.nextScreen, super.key});
 
   final void Function()? nextScreen;
   @override
-  State<Heigt> createState() => _HeigtState();
+  State<Weight> createState() => _WeightState();
 }
 
-class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
-  int height = 180;
+class _WeightState extends State<Weight> with SingleTickerProviderStateMixin {
+  int weight = 70;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "What is your height?",
+          "What is your weight?",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -32,12 +32,12 @@ class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
           child: CupertinoPicker(
             itemExtent: 40,
             backgroundColor: Theme.of(context).colorScheme.primary,
-            scrollController: FixedExtentScrollController(initialItem: height),
+            scrollController: FixedExtentScrollController(initialItem: weight),
             onSelectedItemChanged: (value) => (setState(() {
-              height = 120 + value;
+              weight = 30 + value;
             })),
             children: [
-              for (var i = 120; i <= 220; i++)
+              for (var i = 40; i <= 200; i++)
                 Align(
                   alignment: Alignment.center,
                   child: Text(
@@ -55,7 +55,7 @@ class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
           child: PrimaryButton(
             text: "Continue",
             onTap: () {
-              ProfileUtils().updateHeight(height);
+              ProfileUtils().updateWeight(weight);
               widget.nextScreen!();
             },
             light: true,

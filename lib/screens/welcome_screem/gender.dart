@@ -1,3 +1,4 @@
+import 'package:activeaid/utils/profile_utils.dart';
 import 'package:activeaid/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
@@ -211,6 +212,7 @@ class _GenderState extends State<Gender> with SingleTickerProviderStateMixin {
           child: PrimaryButton(
             text: "Continue",
             onTap: () {
+              ProfileUtils().updateGender(gender);
               widget.nextScreen!();
             },
             light: true,

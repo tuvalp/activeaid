@@ -1,3 +1,4 @@
+import 'package:activeaid/utils/profile_utils.dart';
 import 'package:activeaid/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin {
             text: "Get Started",
             light: true,
             onTap: () {
+              ProfileUtils().newProfile();
               widget.nextScreen!();
             },
           ),

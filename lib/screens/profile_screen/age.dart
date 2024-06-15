@@ -1,3 +1,4 @@
+import 'package:activeaid/utils/profile_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,8 @@ class _AgeState extends State<Age> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  int _age = ProfileUtils().profileBox.getAt(0)!.age;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -79,7 +82,7 @@ class _AgeState extends State<Age> with SingleTickerProviderStateMixin {
                   ),
                   const SizedBox(width: 16),
                   Text(
-                    "20",
+                    ProfileUtils().profileBox.getAt(0)!.age.toString(),
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -89,7 +92,7 @@ class _AgeState extends State<Age> with SingleTickerProviderStateMixin {
               ),
               IconButton(
                 onPressed: () {
-                  widget.setOpen(2);
+                  widget.setOpen(3);
                 },
                 icon: Icon(Icons.edit,
                     size: 18, color: Theme.of(context).colorScheme.onSecondary),
@@ -117,8 +120,12 @@ class _AgeState extends State<Age> with SingleTickerProviderStateMixin {
                     itemExtent: 32,
                     backgroundColor: Theme.of(context).colorScheme.surface,
                     scrollController:
-                        FixedExtentScrollController(initialItem: 18),
-                    onSelectedItemChanged: (value) => (print(value)),
+                        FixedExtentScrollController(initialItem: _age),
+                    onSelectedItemChanged: (value) {
+                      setState(() {
+                        _age = value;
+                      });
+                    },
                     children: [
                       for (var i = 0; i <= 100; i++)
                         Text(
@@ -130,11 +137,29 @@ class _AgeState extends State<Age> with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    widget.setOpen(0);
-                  },
-                  child: const Text("Save", style: TextStyle(fontSize: 16)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        ProfileUtils().updateAge(_age);
+                        widget.setOpen(0);
+                      },
+                      child: const Text("Save", style: TextStyle(fontSize: 16)),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        widget.setOpen(0);
+                      },
+                      child: Text(
+                        "Close",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

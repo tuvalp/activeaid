@@ -1,3 +1,4 @@
+import 'package:activeaid/utils/profile_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class Weight extends StatefulWidget {
 class _WeightState extends State<Weight> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  int weight = ProfileUtils().profileBox.getAt(0)!.weight;
 
   @override
   void initState() {
@@ -81,7 +83,7 @@ class _WeightState extends State<Weight> with SingleTickerProviderStateMixin {
                   Row(
                     children: [
                       Text(
-                        "64",
+                        ProfileUtils().profileBox.getAt(0)!.weight.toString(),
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -101,7 +103,7 @@ class _WeightState extends State<Weight> with SingleTickerProviderStateMixin {
               ),
               IconButton(
                 onPressed: () {
-                  widget.setOpen(4);
+                  widget.setOpen(5);
                 },
                 icon: Icon(Icons.edit,
                     size: 18, color: Theme.of(context).colorScheme.onSecondary),
@@ -130,7 +132,11 @@ class _WeightState extends State<Weight> with SingleTickerProviderStateMixin {
                     backgroundColor: Theme.of(context).colorScheme.surface,
                     scrollController:
                         FixedExtentScrollController(initialItem: 50),
-                    onSelectedItemChanged: (value) => (print(30 + value)),
+                    onSelectedItemChanged: (value) {
+                      setState(() {
+                        weight = 30 + value;
+                      });
+                    },
                     children: [
                       for (var i = 30; i <= 200; i++)
                         Text(
@@ -142,11 +148,29 @@ class _WeightState extends State<Weight> with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    widget.setOpen(0);
-                  },
-                  child: const Text("Save", style: TextStyle(fontSize: 16)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        ProfileUtils().updateWeight(weight);
+                        widget.setOpen(0);
+                      },
+                      child: const Text("Save", style: TextStyle(fontSize: 16)),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        widget.setOpen(0);
+                      },
+                      child: Text(
+                        "Close",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

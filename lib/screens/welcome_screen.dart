@@ -1,7 +1,9 @@
+import 'package:activeaid/screens/main_screen.dart';
 import 'package:activeaid/screens/welcome_screem/age.dart';
 import 'package:activeaid/screens/welcome_screem/auth.dart';
 import 'package:activeaid/screens/welcome_screem/gender.dart';
 import 'package:activeaid/screens/welcome_screem/heigt.dart';
+import 'package:activeaid/screens/welcome_screem/weight.dart';
 import 'package:activeaid/screens/welcome_screem/welcome.dart';
 import 'package:flutter/material.dart';
 
@@ -23,9 +25,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   void nextScreen() {
-    setState(() {
-      screenIndex++;
-    });
+    if (screenIndex < 5) {
+      setState(() {
+        screenIndex++;
+      });
+    } else {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Main()));
+    }
+
     // Scroll to the next page
     _pageController.animateToPage(
       screenIndex,
@@ -74,6 +82,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Gender(nextScreen: nextScreen),
                   Age(nextScreen: nextScreen),
                   Heigt(nextScreen: nextScreen),
+                  Weight(nextScreen: nextScreen),
                 ],
               ),
             ),
@@ -84,7 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    for (int i = 1; i < 5; i++)
+                    for (int i = 1; i < 6; i++)
                       Container(
                         width: 10,
                         height: 10,

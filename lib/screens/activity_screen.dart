@@ -114,9 +114,10 @@ class _ActivtyScreenState extends State<ActivtyScreen> {
             const SizedBox(height: 22),
             SizedBox(
               width: double.infinity,
-              height: 200,
+              height: 240,
               child: LineChart(
                 LineChartData(
+                    baselineY: 10,
                     gridData: const FlGridData(show: false),
                     borderData: FlBorderData(show: false),
                     titlesData: FlTitlesData(

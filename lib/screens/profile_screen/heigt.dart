@@ -1,3 +1,4 @@
+import 'package:activeaid/utils/profile_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,8 @@ class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  int height = ProfileUtils().profileBox.getAt(0)!.height;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -81,7 +84,7 @@ class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
                   Row(
                     children: [
                       Text(
-                        "20",
+                        ProfileUtils().profileBox.getAt(0)!.height.toString(),
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -101,7 +104,7 @@ class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
               ),
               IconButton(
                 onPressed: () {
-                  widget.setOpen(3);
+                  widget.setOpen(4);
                 },
                 icon: Icon(Icons.edit,
                     size: 18, color: Theme.of(context).colorScheme.onSecondary),
@@ -129,8 +132,12 @@ class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
                     itemExtent: 32,
                     backgroundColor: Theme.of(context).colorScheme.surface,
                     scrollController:
-                        FixedExtentScrollController(initialItem: 50),
-                    onSelectedItemChanged: (value) => (print(120 + value)),
+                        FixedExtentScrollController(initialItem: height),
+                    onSelectedItemChanged: (value) {
+                      setState(() {
+                        height = 120 + value;
+                      });
+                    },
                     children: [
                       for (var i = 120; i <= 220; i++)
                         Text(
@@ -142,11 +149,29 @@ class _HeigtState extends State<Heigt> with SingleTickerProviderStateMixin {
                     ],
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    widget.setOpen(0);
-                  },
-                  child: const Text("Save", style: TextStyle(fontSize: 16)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        ProfileUtils().updateHeight(height);
+                        widget.setOpen(0);
+                      },
+                      child: const Text("Save", style: TextStyle(fontSize: 16)),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        widget.setOpen(0);
+                      },
+                      child: Text(
+                        "Close",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
