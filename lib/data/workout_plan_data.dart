@@ -124,40 +124,7 @@ class WorkoutPlanData {
       secondaryImage: 'assets/images/push_up_2.png',
     );
 
-    Exercise exs1 = Exercise(
-      name: 'exs1',
-      duration: 5,
-      metValue: 1,
-      soundPath: "",
-      image: 'assets/images/push_up_1.png',
-      secondaryImage: 'assets/images/push_up_2.png',
-    );
-    Exercise exs2 = Exercise(
-      name: 'exs2',
-      duration: 5,
-      metValue: 1,
-      soundPath: "",
-      image: 'assets/images/push_up_1.png',
-      secondaryImage: 'assets/images/push_up_2.png',
-    );
-    Exercise exs3 = Exercise(
-      name: 'exs3',
-      duration: 5,
-      metValue: 1,
-      soundPath: "",
-      image: 'assets/images/push_up_1.png',
-      secondaryImage: 'assets/images/push_up_2.png',
-    );
-
-    // Define workout plans
     List<WorkoutPlan> workoutPlans = [
-      WorkoutPlan(
-        name: 'exss',
-        category: 1,
-        exercises: [exs1, exs2, exs3],
-        rest: 10,
-        repetitions: 3,
-      ),
       WorkoutPlan(
         name: 'Beginner Full Body Circuit',
         category: 1,
