@@ -3,7 +3,7 @@ A workout app, with activty log, profile screen and more.
 Screenshot:
 
 Welcome Screen(on first entry):
-![Main](/screenshot/w1.jpg =250x250)
+![Main](/screenshot/w1.jpg | width=100)
 ![Main](/screenshot/w2.jpg)
 ![Main](/screenshot/w3.jpg)
 ![Main](/screenshot/w4.jpg)
