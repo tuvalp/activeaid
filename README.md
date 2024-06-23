@@ -4,7 +4,7 @@ Screenshot:
 
 Welcome Screen(on first entry):
 <br />
-<img src="/screenshot/w1.jpg" width="200" height="300">
+<img src="/screenshot/w1.jpg" width="200" height="340">
 <img src="/screenshot/w2.jpg" width="200" height="280">
 <img src="/screenshot/w3.jpg" width="200" height="280">
 <img src="/screenshot/w4.jpg" width="200" height="280">
